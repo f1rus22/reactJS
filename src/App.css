@@ -1,7 +1,4 @@
-h1 {
-  background-color: rgb(107, 181, 241);
-  color: white;
-  border-radius: 20px;
-  text-align: center;
-  padding: 10px;
+.container {
+  margin: 0 auto;
+  width: 1140px;
 }

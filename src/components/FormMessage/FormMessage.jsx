@@ -1,42 +1,41 @@
-import React, { useEffect, useRef } from "react";
-import "./formMessage.css";
-import { Button, TextField, Box } from "@material-ui/core";
+import { Button, Input } from "@mui/material";
+import SendIcon from "@mui/icons-material/Send";
+import React from "react";
+import { useState, useCallback } from "react";
+import faker from "faker";
+import { Box } from "@mui/system";
 
-export default function FormMessage({
-  handleMessFormSubmit,
-  setIsTyping,
-  message,
-  setMessage,
-}) {
-  const ref = useRef(null);
-  useEffect(() => {
-    ref.current?.focus();
-  });
+export default function FormMessage({ loadMessage }) {
+  const [value, setValue] = useState("");
+
+  const changeFormValue = useCallback((e) => {
+    setValue(e.target.value);
+  }, []);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    loadMessage({ author: "Alegz", text: value, id: faker.datatype.number() });
+    setValue("");
+  };
 
   return (
-    <Box className="formMessage" sx={{ dispplay: "flex", height: "80px" }}>
-      <TextField
-        onSubmit={handleMessFormSubmit}
-        sx={{ width: "auto" }}
-        label="Message"
-        variant="outlined"
-        type="text"
-        name="text"
-        id="text"
-        inputRef={ref}
-        value={message}
-        onChange={(event) => {
-          setIsTyping(true);
-          setMessage(event.target.value);
-        }}
-      />
-      <Button
-        onClick={handleMessFormSubmit}
-        variant="contained"
-        color="Primary"
-      >
-        Send
-      </Button>
-    </Box>
+    <form onSubmit={handleSubmit}>
+      <Box sx={{ display: "flex", flexDirection: "row" }}>
+        <Input
+          fullWidth="true"
+          autoFocus
+          value={value}
+          onChange={changeFormValue}
+          type="text"
+        />
+        <Button
+          variant="contained"
+          style={{ height: "37px" }}
+          onClick={handleSubmit}
+        >
+          <SendIcon />
+        </Button>
+      </Box>
+    </form>
   );
 }

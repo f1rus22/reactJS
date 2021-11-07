@@ -1,24 +1,18 @@
+import { Box } from "@mui/system";
 import React from "react";
-import { Avatar } from "@material-ui/core";
-import "./messageList.css";
+import Message from "../Message/Message";
 
-export default function MessageList({ messageList }) {
+export const MessageList = ({ messageList }) => {
+  console.log(messageList);
   return (
-    <div>
-      <h1>Send message to Bot</h1>
-      <div className="messageList scrollList">
-        <ul>
-          {messageList.map((message) => {
-            return (
-              <div className="message" key={message.id}>
-                <Avatar src={message.avatar} />
-                <div>{message.autor}</div>
-                <div>{message.text}</div>
-              </div>
-            );
-          })}
-        </ul>
-      </div>
-    </div>
+    <Box sx={{ height: "calc(70vh - 57px)", overflow: "auto" }}>
+      {messageList.map((message) => (
+        <Message
+          key={message.id}
+          author={message.author}
+          text={message.text}
+        ></Message>
+      ))}
+    </Box>
   );
-}
+};
