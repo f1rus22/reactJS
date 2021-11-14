@@ -1,0 +1,3 @@
+export const EXAMPLE_ACTION = "EXAMPLE_ACTION";
+export const PROFILE_SET_NAME = "PROFILE::SET_NAME";
+
