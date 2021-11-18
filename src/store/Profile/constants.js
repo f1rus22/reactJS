@@ -1,0 +1,2 @@
+export const PROFILE_SET_NAME = "PROFILE::SET_NAME";
+
