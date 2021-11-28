@@ -1,10 +1,9 @@
-import faker from "faker";
 import React from "react";
 import { useDispatch } from "react-redux";
 import { addChatWithFB } from "../../store/Chat/actions";
 import { useInput } from "../../utils/useInput";
 
-export const AddChat = () => {
+export const AddChat = React.memo(() => {
   const dispatch = useDispatch();
   const { value, handleChange, reset } = useInput("");
 
@@ -22,4 +21,4 @@ export const AddChat = () => {
       <input onChange={handleChange} value={value} placeholder="Create chat" />
     </form>
   );
-};
+});
